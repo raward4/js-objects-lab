@@ -5,34 +5,34 @@ const game = {
   secretNum: null,
   prevGuesses: [],
   getGuess: function() { 
-    return ("Please enter a guess between " + this.smallestNum -1 + " and " + this.biggestNum + 1)}
-  render: function() {
-    if (guess < this.smallestNum || guess > this.biggestNum) {
-      return "invalid guess"
-    else (guess = this.secretNum) {
-      return "Congrats! You guessed the number in " + [console.log(forEach(prevGuesses))] + " guesses!"
+    return ("Please enter a guess between " + this.smallestNum -1 + " and " + this.biggestNum + 1)},
+    render: function(guessValue) {
+    if (guessValue > this.secretNum) {
+        return "Your guess is too high!" + console.log(forEach(prevGuesses.length))
+      }
+    else if (guessValue > this.secretNum) {
+      return "Your guess is too high!" + console.log(forEach(prevGuesses.length))
     }
-    else (guess > this.secretNum) {
-      return "Your guess is too high!" + console.log(prevGuesses.length)
+    else if (guess == this.secretNum) {
+      return "Congrats! You guessed the number in " + console.log(forEach(prevGuesses)) + " guesses!"
     }
-    else (guess < this.secretNum) {
-      return "Your guess is too low!" + console.log(forEach(prevGuesses.length))
+    else {
+      console.log("Invalid guess. To play, please choose a number between 1 - 100.")
     }
-  }
-
   },
 
-  play: function(guess) {
-    this.secretNum = Math.floor(Math.random() * 
+  play: function() {
+      let guessValue = 0;
+      this.secretNum = Math.floor(Math.random() * 
       (this.biggestNum - this.smallestNum + 1)) + this.smallestNum;
     console.log(getGuess); 
-   
-  }
-  function countGuesses(arr){
-    arr.forEach(function(guess){
-        console.log(guess.join())
-    })
+  } ,
+  countGuesses: function(...arr) {
+    arr.forEach(guesses);
+    console.log(guess.join())
+    }
 }
+
 
 
   
