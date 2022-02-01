@@ -23,26 +23,22 @@ const game = {
       return},
 
   getGuess: function (){
-    let guessValue=parseInt(prompt(`Enter a guess between ${this.smallestNum} and ${this.biggestNum}.`)) 
+    let guessValue=parseInt(prompt(`Welcome! To play, guess a number between ${this.smallestNum} and ${this.biggestNum}.`)) 
     console.log('guess',guessValue)
     return guessValue
   },
   
   render: function(guessValue,secretNum,prevGuesses) {
-    let message = ""
-    if (this.guessValue > this.secretNum) {
-     "Your guess is too HIGH!" + console.log(forEach(prevGuesses.length));
-      }
-    else if (this.guessValue < this.secretNum) {
-    "Your guess is too LOW!" + console.log(forEach(prevGuesses.length))
+    if (guessValue === secretNum) {
+      let message = `Congrats You guessed the number in ${prevGuesses.length} guesses! Play again?`
+      alert(message)
+      return
     }
-    else if (this.guessValue === this.secretNum) {
-    "Congrats! You guessed the number in " + console.log(forEach(prevGuesses.length)) + " guesses!"
-    }
-    else {
-    ("Invalid guess. To play, please choose a number from " + this.smallestNum + " and " + this.biggestNum)
-    }
-  alert(message)},
+    let high = 'high'
+    let low = 'low'
+    let message = `Wrong! Your guess was too ${guessValue>secretNum? high:low}.  Previous guesses: ${prevGuesses.join(', ')}`
+    alert(message)
+},
 
 }
 
@@ -66,5 +62,5 @@ game.play()
    // - Hints:
       //  - `render` won’t be able to access any of `play`’s local variables, e.g., `guess`, so be sure pass `render` any arguments as needed (you may not have built your program to use any, that's ok if that's the case!)
        // - Template literals not only have interpolation, but they also honor whitespace - including line breaks!
-       // - The list of previous guesses can be generated using the array `join` method.
+       // - The list of previous guesses can be generated using the aray `join` method.
 // 6. The `play` method should end (`return`) when the guess matches `secretNum`.
