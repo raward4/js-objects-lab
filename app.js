@@ -2,56 +2,52 @@ const game = {
   title: 'Guess the Number!',
   biggestNum: 10,
   smallestNum: 1,
-  secretNum: this.secretNum = Math.floor(Math.random() * 
-    (this.biggestNum - this.smallestNum + 1)) + this.smallestNum,
+  secretNum: null,
   prevGuesses: [],
+
   play: function() {
+    if (!this.secretNum) {
       this.secretNum = Math.floor(Math.random() * 
-      (this.biggestNum - this.smallestNum + 1)) + this.smallestNum;
-      while(this.prevGuesses[this.prevGuesses.length - 1] !== this.secretNum){
-      this.prevGuesses.push(this.getGuess());
-    }
-    this.render();
-    return this.secretNum;
+      (this.biggestNum - this.smallestNum + 1)) + this.smallestNum}
+    let guessValue = NaN
+    do {
+      guessValue = NaN
+      while (isNaN(guessValue) || guessValue < this.smallestNum || guessValue > this.biggestNum) {
+        guessValue = this.getGuess()
+      }
+    
+        this.prevGuesses.push(guessValue)
+        this.render(guessValue,this.secretNum,this.prevGuesses)
+        
+      } while (guessValue !== this.secretNum)
+      return},
+
+  getGuess: function (){
+    let guessValue=parseInt(prompt(`Enter a guess between ${this.smallestNum} and ${this.biggestNum}.`)) 
+    console.log('guess',guessValue)
+    return guessValue
   },
-getGuess: function() { 
-  let guessValue;   
-  do {
-  guessValue = parseInt(
-       alert("Please enter a guess between " + this.smallestNum -1 + " and " + this.biggestNum + 1))
-  } while (
-    isNaN(guessValue) || guessValue<this.smallest || guessValue>this.biggestNum
-      );
-    return guessValue;
-    }
-  },
-  render: function() {
+  
+  render: function(guessValue,secretNum,prevGuesses) {
+    let message = ""
     if (this.guessValue > this.secretNum) {
-        return "Your guess is too HIGH!" + console.log(forEach(prevGuesses.length));
+     "Your guess is too HIGH!" + console.log(forEach(prevGuesses.length));
       }
     else if (this.guessValue < this.secretNum) {
-      return "Your guess is too LOW!" + console.log(forEach(prevGuesses.length))
+    "Your guess is too LOW!" + console.log(forEach(prevGuesses.length))
     }
     else if (this.guessValue === this.secretNum) {
-      return "Congrats! You guessed the number in " + console.log(forEach(prevGuesses.length)) + " guesses!"
+    "Congrats! You guessed the number in " + console.log(forEach(prevGuesses.length)) + " guesses!"
     }
     else {
-      console.log("Invalid guess. To play, please choose a number from " + this.smallestNum + " and " + this.biggestNum)
-    }},
-
-  countGuesses: function(...arr) {
-    arr.forEach(countGuesses);
-    console.log(guessValue.join())
+    ("Invalid guess. To play, please choose a number from " + this.smallestNum + " and " + this.biggestNum)
     }
+  alert(message)},
+
 }
 
 
-
-  
-
-console.log(game.play());
-
-console.log(game.countGuesses);
+game.play()
 
 //* 1. Add a `prevGuesses` property to the `game` object initialized to an empty array.
 // Add a `getGuess` method to `game` that prompts the player to enter a guess with a message formatted as: *Enter a guess between [smallestNum] and [biggestNum].*
