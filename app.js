@@ -1,17 +1,33 @@
 const game = {
   title: 'Guess the Number!',
-  biggestNum: 100,
+  biggestNum: 10,
   smallestNum: 1,
   secretNum: this.secretNum = Math.floor(Math.random() * 
-  (this.biggestNum - this.smallestNum + 1)) + this.smallestNum,
+    (this.biggestNum - this.smallestNum + 1)) + this.smallestNum,
   prevGuesses: [],
-  getGuess: function() { 
-     guessValue = parseInt(
-       alert("Please enter a guess between " + this.smallestNum -1 + " and " + this.biggestNum + 1)
-      },
-  render: getGuess(guessValue) {
+  play: function() {
+      this.secretNum = Math.floor(Math.random() * 
+      (this.biggestNum - this.smallestNum + 1)) + this.smallestNum;
+      while(this.prevGuesses[this.prevGuesses.length - 1] !== this.secretNum){
+      this.prevGuesses.push(this.getGuess());
+    }
+    this.render();
+    return this.secretNum;
+  },
+getGuess: function() { 
+  let guessValue;   
+  do {
+  guessValue = parseInt(
+       alert("Please enter a guess between " + this.smallestNum -1 + " and " + this.biggestNum + 1))
+  } while (
+    isNaN(guessValue) || guessValue<this.smallest || guessValue>this.biggestNum
+      );
+    return guessValue;
+    }
+  },
+  render: function() {
     if (this.guessValue > this.secretNum) {
-        return "Your guess is too HIGH!" + console.log(forEach(prevGuesses.length))
+        return "Your guess is too HIGH!" + console.log(forEach(prevGuesses.length));
       }
     else if (this.guessValue < this.secretNum) {
       return "Your guess is too LOW!" + console.log(forEach(prevGuesses.length))
@@ -20,18 +36,11 @@ const game = {
       return "Congrats! You guessed the number in " + console.log(forEach(prevGuesses.length)) + " guesses!"
     }
     else {
-      console.log("Invalid guess. To play, please choose a number from 1 - 100.")
-    }
-  },
+      console.log("Invalid guess. To play, please choose a number from " + this.smallestNum + " and " + this.biggestNum)
+    }},
 
-  play: function(guessValue) {
-      this.secretNum = Math.floor(Math.random() * 
-      (this.biggestNum - this.smallestNum + 1)) + this.smallestNum;
-    console.log(guessValue); 
-    console.log(this.secretNum)
-  } ,
   countGuesses: function(...arr) {
-    arr.forEach(guessValue);
+    arr.forEach(countGuesses);
     console.log(guessValue.join())
     }
 }
@@ -40,7 +49,7 @@ const game = {
 
   
 
-console.log(game.play(74));
+console.log(game.play());
 
 console.log(game.countGuesses);
 
